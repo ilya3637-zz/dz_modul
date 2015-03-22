@@ -6,7 +6,7 @@ class House{
 	int countOfFlats;
 	double rent;
 
-public: House(int, bool, bool, int);
+public: House(int, bool, bool, int,double);
 		bool isNewHouse();
 		bool isInRepair();
 		double getRent();
