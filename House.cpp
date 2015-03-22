@@ -7,16 +7,16 @@
 
 using namespace std;
 
+House::House(int housenumber, bool newh, bool inr, int count, double rent_){
+	number = housenumber;
+	newHouse = newh;
+	inRepair = inr;
+	countOfFlats = count;
+	rent = rent_;
+}
+
 int House::getNumber(){
 	return number;
-}
-
-double House::getRent(){
-	return rent;
-}
-
-int House::getCountOfFlats(){
-	return countOfFlats;
 }
 
 bool House::isNewHouse(){
@@ -26,6 +26,18 @@ bool House::isNewHouse(){
 bool House::isInRepair(){
 	return inRepair;
 }
+
+int House::getCountOfFlats(){
+	return countOfFlats;
+}
+
+double House::getRent(){
+	return rent;
+}
+
+
+
+
 
 
 
