@@ -1,4 +1,4 @@
-
+#pragma once
 #include <list>
 #include "House.h"
 
@@ -12,14 +12,17 @@ class Street {
 	bool newStreet;
 
 
-public: Street(std::string, bool, bool);;
-		void add(House&);
-		bool has(House&);
-		House& getHouse(int);
+public: Street(std::string, bool, bool);
+		Street(const Street& obj);
+		void add(const House&);
+		bool has(const House&);
+		const House& getHouse(int) const;
+		void setHouse(const House&);
 		int del(int);
 		void delAll();
 		void print(int);
 		void printAll();
 		double calcFullRent();
+		Street& operator =(const Street& st);
 		~Street();
 };
