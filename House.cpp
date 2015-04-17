@@ -4,8 +4,14 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <list>
 
-using namespace std;
+using std::string;
+using std::cin;
+using std::cout;
+using std::endl;
+using std::list;
+using std::exception;
 
 House::House(int housenumber, bool newh, bool inr, int count, double rent_){
 	number = housenumber;
@@ -14,12 +20,36 @@ House::House(int housenumber, bool newh, bool inr, int count, double rent_){
 	countOfFlats = count;
 	rent = rent_;
 }
+ 
+House::House(const House& obj) {
+	number=obj.number;
+	newHouse=obj.newHouse;
+	inRepair=obj.inRepair;
+	countOfFlats=obj.countOfFlats;
+	rent=obj.rent;
+}
 
-int House::getNumber(){
+
+
+House& House::operator =(const House& st) {
+    number = st.number;
+    newHouse = st.newHouse;
+    inRepair = st.inRepair;
+    countOfFlats = st.countOfFlats;
+    rent = st.rent;
+    return *this;
+}
+
+
+int House::getNumber() const {
 	return number;
 }
 
-bool House::isNewHouse(){
+void House::setNumber(int xn) {	
+number =xn;
+}
+
+bool House::isNewHouse(){ 
 	return newHouse;
 }
 
@@ -27,18 +57,13 @@ bool House::isInRepair(){
 	return inRepair;
 }
 
-int House::getCountOfFlats(){
+int House::getCountOfFlats() const {
 	return countOfFlats;
 }
 
-double House::getRent(){
+double House::getRent() const {
 	return rent;
 }
-
-
-
-
-
 
 
 void House::setInRepair(bool newinRepair){
@@ -51,4 +76,8 @@ void House::setNewHouse(bool newnewHouse){
 
 void House::setRent(double newRent){
 	rent = newRent;
+}
+
+void House::setCountOfFlats(int newCount){
+	countOfFlats = newCount;
 }
