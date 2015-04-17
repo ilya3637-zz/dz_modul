@@ -1,8 +1,15 @@
 #include <iostream>
 #include "Street.h"
 #include "House.h"
+#include <list>
 
-using namespace std;
+using std::string;
+using std::cin;
+using std::cout;
+using std::endl;
+using std::list;
+using std::exception;
+
 
 int main()
 {
@@ -36,5 +43,3 @@ int main()
 	system("pause");
 	return 0;
 }
-
-
