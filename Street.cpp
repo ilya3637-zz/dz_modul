@@ -5,8 +5,15 @@
 #include <iomanip>
 #include <sstream>
 #include <string>
+#include <list>
 
-using namespace std;
+using std::string;
+using std::cin;
+using std::cout;
+using std::endl;
+using std::list;
+using std::exception;
+
 
 
 
@@ -17,14 +24,33 @@ Street::Street(std::string name, bool repair, bool isnew){
 	countOfHouse = 0;
 }
 
+Street::Street(const Street& obj)
+{
+	streetName=obj.streetName;
+	inRepair=obj.inRepair;
+	newStreet=obj.newStreet;
+	countOfHouse=obj.countOfHouse;
+}
+
+
+Street& Street::operator =(const Street& st) {
+    streetName = st.streetName;
+    inRepair = st.inRepair;
+    newStreet = st.newStreet;
+    countOfHouse = st.countOfHouse;
+    street = st.street;
+    return *this;
+}
+
+
 
 //house addition
-void Street::add(House& newHouse){
+void Street::add(const House& newHouse){
 	street.push_back(newHouse);
 	++countOfHouse;
 }
 //true check
-bool Street::has(House& house){
+bool Street::has(const House& house){
 	for (list<House>::iterator it = street.begin(); it != street.end(); ++it) {
 		if ((*it).getNumber() == house.getNumber()){
 			return true;
@@ -34,8 +60,8 @@ bool Street::has(House& house){
 	return false;
 }
 //error
-House& Street::getHouse(int number){
-	for (list<House>::iterator it = street.begin(); it != street.end(); ++it) {
+const House&Street::getHouse(int number) const {
+	for (list<House>::const_iterator it = street.begin(); it != street.end(); ++it) {
 		if ((*it).getNumber() == number) {
 			return (*it);
 		}
@@ -43,6 +69,11 @@ House& Street::getHouse(int number){
 	cout << "Error: Don't have this House" << endl;
 	return *street.end();
 }
+//пара
+void Street::setHouse(const House& x) {
+	street.push_back(x);
+}
+
 //delite by number
 int Street::del(int number) {
 	for (list<House>::iterator it = street.begin(); it != street.end(); ++it) {
@@ -79,7 +110,7 @@ void Street::printAll() {
 
 //rent count
 double Street::calcFullRent() {
-	double sum;
+	double sum=0;
 	for (list<House>::iterator it = street.begin(); it != street.end(); ++it) {
 		sum+=(*it).getRent();
 	}
